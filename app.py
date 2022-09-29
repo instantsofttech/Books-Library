@@ -25,7 +25,7 @@ app = Flask(__name__)
 @app.route("/index")
 def index():
     con = sql.connect(
-        "postgres://acgqiwenxquwam:8dbc253e737f6e1c7441bfe71a7c080d8c354f4a9c9171528e4c0cf98f91f214@ec2-3-229-252-6.compute-1.amazonaws.com:5432/d4esd7evbkcdr0")
+        "db_web.db")
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute("select * from books")
@@ -41,7 +41,7 @@ def add_book():
 
         #cover.save(os.path.join(app.config['UPLOAD_DIR'], cover.filename))
         con = sql.connect(
-            "postgres://acgqiwenxquwam:8dbc253e737f6e1c7441bfe71a7c080d8c354f4a9c9171528e4c0cf98f91f214@ec2-3-229-252-6.compute-1.amazonaws.com:5432/d4esd7evbkcdr0")
+            "db_web.db")
         cur = con.cursor()
         cur.execute("insert into books(BOOKNAME,AUTHOR) values (?,?)",
                     (bookname, author))
@@ -60,7 +60,7 @@ def edit_book(uid):
         author = request.form['author']
      #  /* cover = request.files['cover']*/
         con = sql.connect(
-            "postgres://acgqiwenxquwam:8dbc253e737f6e1c7441bfe71a7c080d8c354f4a9c9171528e4c0cf98f91f214@ec2-3-229-252-6.compute-1.amazonaws.com:5432/d4esd7evbkcdr0")
+            "db_web.db")
         cur = con.cursor()
         cur.execute("update books set BOOKNAME=?,AUTHOR=? where UID=?",
                     (bookname, author, uid))
@@ -68,7 +68,7 @@ def edit_book(uid):
         flash('Book Updated', 'success')
         return redirect(url_for("index"))
     con = sql.connect(
-        "postgres://acgqiwenxquwam:8dbc253e737f6e1c7441bfe71a7c080d8c354f4a9c9171528e4c0cf98f91f214@ec2-3-229-252-6.compute-1.amazonaws.com:5432/d4esd7evbkcdr0")
+        "")
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute("select * from books where UID=?", (uid,))
@@ -79,7 +79,7 @@ def edit_book(uid):
 @ app.route("/delete_book/<string:uid>", methods=['GET'])
 def delete_book(uid):
     con = sql.connect(
-        "postgres://acgqiwenxquwam:8dbc253e737f6e1c7441bfe71a7c080d8c354f4a9c9171528e4c0cf98f91f214@ec2-3-229-252-6.compute-1.amazonaws.com:5432/d4esd7evbkcdr0")
+        "db_web.db")
     cur = con.cursor()
     cur.execute("delete from books where UID=?", (uid,))
     con.commit()
