@@ -7,7 +7,8 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
-    con = sql.connect("db_web.db")
+    con = sql.connect(
+        "postgres://lrlbchnwvdboux:faf52d41bc1ec2c26c4bc258bed2601d0924d981b2b5e09790d0223f08bd3573@ec2-3-219-19-205.compute-1.amazonaws.com:5432/dbibce2inlbpli")
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute("select * from books")
@@ -21,9 +22,10 @@ def add_book():
         bookname = request.form['bookname']
         author = request.form['author']
         cover = request.form['cover']
-        con = sql.connect("db_web.db")
+        con = sql.connect(
+            "postgres://lrlbchnwvdboux:faf52d41bc1ec2c26c4bc258bed2601d0924d981b2b5e09790d0223f08bd3573@ec2-3-219-19-205.compute-1.amazonaws.com:5432/dbibce2inlbpli")
         cur = con.cursor()
-        cur.execute("insert into users(UNAME,CONTACT,COVER) values (?,?,?)",
+        cur.execute("insert into users(BOOKNAME,AUTHOR,COVER) values (?,?,?)",
                     (bookname, author, cover))
         con.commit()
         flash('Book Added', 'success')
@@ -37,14 +39,16 @@ def edit_book(uid):
         bookname = request.form['bookname']
         author = request.form['author']
         cover = request.form['cover']
-        con = sql.connect("db_web.db")
+        con = sql.connect(
+            "postgres://lrlbchnwvdboux:faf52d41bc1ec2c26c4bc258bed2601d0924d981b2b5e09790d0223f08bd3573@ec2-3-219-19-205.compute-1.amazonaws.com:5432/dbibce2inlbpli")
         cur = con.cursor()
-        cur.execute("update books set UNAME=?,CONTACT=?,COVER=? where UID=?",
+        cur.execute("update books set BOOKNAME=?,AUTHOR=?,COVER=? where UID=?",
                     (bookname, author, cover, uid))
         con.commit()
         flash('Book Updated', 'success')
         return redirect(url_for("index"))
-    con = sql.connect("db_web.db")
+    con = sql.connect(
+        "postgres://lrlbchnwvdboux:faf52d41bc1ec2c26c4bc258bed2601d0924d981b2b5e09790d0223f08bd3573@ec2-3-219-19-205.compute-1.amazonaws.com:5432/dbibce2inlbpli")
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute("select * from books where UID=?", (uid,))
@@ -54,7 +58,8 @@ def edit_book(uid):
 
 @app.route("/delete_book/<string:uid>", methods=['GET'])
 def delete_book(uid):
-    con = sql.connect("db_web.db")
+    con = sql.connect(
+        "postgres://lrlbchnwvdboux:faf52d41bc1ec2c26c4bc258bed2601d0924d981b2b5e09790d0223f08bd3573@ec2-3-219-19-205.compute-1.amazonaws.com:5432/dbibce2inlbpli")
     cur = con.cursor()
     cur.execute("delete from books where UID=?", (uid,))
     con.commit()
