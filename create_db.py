@@ -2,7 +2,7 @@ import sqlite3 as sql
 
 # connect to SQLite
 con = sql.connect(
-    'postgres://nqqltkvqgqstcz:c9a3e77f7483c7d2221e44279ae1b8092cdc093dc3f4f5aa59e5deb5726f872a@ec2-44-210-36-247.compute-1.amazonaws.com:5432/d9jruue7k2ikb')
+    'postgres://acgqiwenxquwam:8dbc253e737f6e1c7441bfe71a7c080d8c354f4a9c9171528e4c0cf98f91f214@ec2-3-229-252-6.compute-1.amazonaws.com:5432/d4esd7evbkcdr0')
 
 # Create a Connection
 cur = con.cursor()
