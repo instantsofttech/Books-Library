@@ -1,7 +1,8 @@
 import sqlite3 as sql
 
 # connect to SQLite
-con = sql.connect('db_web.db')
+con = sql.connect(
+    'postgres://lrlbchnwvdboux:faf52d41bc1ec2c26c4bc258bed2601d0924d981b2b5e09790d0223f08bd3573@ec2-3-219-19-205.compute-1.amazonaws.com:5432/dbibce2inlbpli')
 
 # Create a Connection
 cur = con.cursor()
