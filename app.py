@@ -9,8 +9,6 @@ from PIL import Image
 
 
 app = Flask(__name__)
-#app.config['UPLOAD_DIR'] = 'static/Uploads'
-#root_dir = r'C:\Users\punit\Desktop\ABCD\crudapp\static\Uploads'
 
 
 # def get_post(uid):
@@ -41,7 +39,6 @@ def add_book():
         bookname = request.form['bookname']
         author = request.form['author']
 
-        #cover = request.files['cover']
         #cover.save(os.path.join(app.config['UPLOAD_DIR'], cover.filename))
         con = sql.connect(
             "db_web.db")
