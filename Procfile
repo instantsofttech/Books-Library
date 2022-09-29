@@ -1,1 +1,1 @@
-web: gunicorn app.app:crudapp 
+web: gunicorn run:app 
