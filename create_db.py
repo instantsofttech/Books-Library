@@ -15,7 +15,6 @@ sql = '''CREATE TABLE "books" (
 	"UID"	INTEGER PRIMARY KEY AUTOINCREMENT,
 	"BOOKNAME"	TEXT,
 	"AUTHOR"	TEXT,
-	"COVER" BLOB 
 )'''
 cur.execute(sql)
 
