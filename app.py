@@ -58,7 +58,6 @@ def edit_book(uid):
     if request.method == 'POST':
         bookname = request.form['bookname']
         author = request.form['author']
-     #  /* cover = request.files['cover']*/
         con = sql.connect(
             "db_web.db")
         cur = con.cursor()
