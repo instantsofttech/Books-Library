@@ -67,7 +67,7 @@ def edit_book(uid):
         flash('Book Updated', 'success')
         return redirect(url_for("index"))
     con = sql.connect(
-        "")
+        "db_web.db")
     con.row_factory = sql.Row
     cur = con.cursor()
     cur.execute("select * from books where UID=?", (uid,))
